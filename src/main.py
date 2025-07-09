@@ -17,8 +17,10 @@ front_motor.reset_angle(0)
 
 # Global Variables
 target_angle = 90
-direction = "unknown"
-actual_angle = 0
+direction    = "unknown"
+
+total_lap  = 3
+actual_lap = 0
 
 direction_edit = True
 
@@ -45,8 +47,23 @@ def get_round_direction():
 # Main loop
 while True:
     current_color = color_sensor.color()
+    actual_angle = hub.imu.heading()
 
     if direction_edit:
         get_round_direction()
     
-    print("Color detectado", current_color, "Direccion:", direction)
+    print(current_color)
+
+    back_motor.run(60)
+    
+    if current_color == Color.BLUE:
+        front_motor.run_target(200, 40)
+
+
+
+# front_motor.run_target(200, -50)
+# wait(1000)
+# front_motor.run_target(200, 0)
+# wait(3000)
+# front_motor.run_target(200, 50)
+# wait(1000)
