@@ -89,7 +89,7 @@ def get_round_direction(colorActualizado):
         direction = "counterclockwise"
         direction_edit = False
 
-initial_section= get_section(direction, ds_right.distance()/10, ds_left.distance()/10)
+initial_section= get_section("COUNTERCLOCKWISE", ds_right.distance()/10, ds_left.distance()/10)
 wait(2000)
 hub.imu.reset_heading(0)  # Rumbo inicial en 0°
 
@@ -114,7 +114,7 @@ while True:
         if direction == 'counterclockwise':
             car.drive_power(20)
             car.steer(angle_section_1)
-            if hub.imu.heading() <= (target_angle+6):
+            if hub.imu.heading() <= (target_angle+4):
                 status = "straight_sequence"
 
 
